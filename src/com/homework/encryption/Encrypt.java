@@ -12,11 +12,5 @@ public class Encrypt {
         System.out.println("Encrypted " + enc);
         System.out.println("Decrypted " + dec);
 
-        boolean a = true;
-
-        if (a) {
-            System.out.println(a);
-        }
-
     }
 }

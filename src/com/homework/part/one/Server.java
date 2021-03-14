@@ -1,11 +1,10 @@
-package com.homework;
+package com.homework.part.one;
 
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.util.Arrays;
 
 public class Server extends Thread {
     Socket s;
@@ -47,8 +46,6 @@ public class Server extends Thread {
 
             byte[] buf = new byte[64 * 1024];
             int r = is.read(buf);
-
-            System.out.println("r " + Arrays.toString(buf));
 
             String data = new String(buf, 0, r);
 
