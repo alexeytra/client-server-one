@@ -1,5 +1,8 @@
 package com.homework.part.one;
 
+import com.homework.encryption.GammaEncryption;
+import com.homework.encryption.IEncryptAlgorithm;
+
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.InetAddress;
@@ -9,6 +12,7 @@ import java.net.Socket;
 public class Server extends Thread {
     Socket s;
     int num;
+    String key = "ДЕНЬ";
 
     public static void main(String[] args) {
         try {
@@ -22,7 +26,6 @@ public class Server extends Thread {
             while (true) {
                 new Server(i, server.accept());
                 i++;
-                System.out.println("На сервер поступил запрос №: " + i);
             }
         } catch (Exception e) {
             System.out.println("init error: " + e);
@@ -49,7 +52,10 @@ public class Server extends Thread {
 
             String data = new String(buf, 0, r);
 
-            data = "" + num + ": " + "\n" + data;
+            IEncryptAlgorithm gammaEncryption = new GammaEncryption();
+            data = gammaEncryption.decrypt(data, key);
+
+            data = "From server: " + data;
 
             os.write(data.getBytes());
 
